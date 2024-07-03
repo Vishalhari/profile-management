@@ -1,0 +1,20 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <h2>User Registration</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <p>Have an account? <a href="">Log In</a> </p>
+    </form>
+</div>
+
+{% endblock %}

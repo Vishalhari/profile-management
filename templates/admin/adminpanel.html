@@ -1,0 +1,52 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+
+ <link rel="stylesheet" href="{% static 'admin/counter.css' %}">
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers">{{profile}}</span>
+        <span class="count-name">Profile</span>
+      </div>
+    </div>
+
+<!--    <div class="col-md-3">-->
+<!--      <div class="card-counter danger">-->
+<!--        <i class="fa fa-ticket"></i>-->
+<!--        <span class="count-numbers">599</span>-->
+<!--        <span class="count-name">Instances</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-3">-->
+<!--      <div class="card-counter success">-->
+<!--        <i class="fa fa-database"></i>-->
+<!--        <span class="count-numbers">6875</span>-->
+<!--        <span class="count-name">Data</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-3">-->
+<!--      <div class="card-counter info">-->
+<!--        <i class="fa fa-users"></i>-->
+<!--        <span class="count-numbers">35</span>-->
+<!--        <span class="count-name">Users</span>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>
+
+<div class="container">
+  <h3>User Panel</h3>
+  <p>Welcome {{ request.session.username }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <h3>User Panel</h3>
+  <p>Welcome {{ request.session.username }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,241 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+<script src="{% static 'user/js/profile.js' %}"></script>
+
+
+<div class="container">
+  <h3>Create Profile</h3>
+    {% bootstrap_messages %}
+  <form action="" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+<!--       {% bootstrap_form form %}-->
+      {% for field in form %}
+          <div class="form-group">
+              {{ field.label_tag }}
+              {% if field.name != 'profilepic' or not form.instance.profilepic %}
+                {{ field }}
+              {% else %}
+                <input type="file" name="profilepic" accept="image/*" id="id_profilepic">
+                <br>
+                <img src="{{ profile.profilepic.url }}" alt="Current image" width="150" height="150">
+              {% endif %}
+          </div>
+      {% endfor %}
+
+      <h3>Skills</h3>
+
+       <div class="container">
+        <div id="skillsappend">
+            {% for skill in skills %}
+                <div class="skillrows">
+                      <div class="col-md-6">
+                          <input type="text" class="form-control m-input" value="{{ skill.skillname }}" name="skill" placeholder="Enter Skills">
+                      </div>
+                      <div class="col-md-3">
+                          <div class="input-group-prepend">
+                              <button class="btn btn-danger remove" id="DeleteRow" type="button"><i class="bi bi-trash"></i>Delete</button>
+                          </div>
+                      </div>
+                      <br><br>
+                </div>
+            {% empty %}
+                <div class="skillrows">
+                      <div class="col-md-6">
+                          <input type="text" class="form-control m-input" name="skill" placeholder="Enter Skills">
+                      </div>
+                      <div class="col-md-3">
+                          <div class="input-group-prepend">
+                              <button class="btn btn-danger remove" id="DeleteRow" type="button"><i class="bi bi-trash"></i>Delete</button>
+                          </div>
+                      </div>
+                      <br><br>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+           <div class="col-md-3">
+               <button id="rowAdder" type="button" class="btn btn-dark addskill" style="background-color: #000;color: #fff;">
+                   </span> ADD Rows</button>
+           </div>
+      </div>
+      <br>
+
+      <h3>Education</h3>
+      <div class="container">
+          <div id="educationappend">
+              {% for edu in education %}
+                  <div class="educationrows">
+                      <div class="col-md-3">
+                          <input type="text" class="form-control m-input" value="{{ edu.course }}" name="course" placeholder="Enter Course">
+                      </div>
+                      <div class="col-md-3">
+                          <input type="text" class="form-control m-input" value="{{ edu.year }}" name="academicyear" placeholder="Enter Academic Year">
+                      </div>
+                      <div class="col-md-3">
+                          <input type="text" class="form-control m-input" value="{{ edu.percentage }}"  name="percentage" placeholder="Enter Percentage">
+                      </div>
+                      <div class="col-md-3">
+                          <div class="input-group-prepend">
+                              <button class="btn btn-danger remove-edu" type="button"><i class="bi bi-trash"></i>Delete</button>
+                          </div>
+                      </div>
+                      <br><br>
+                  </div>
+              {% empty %}
+                  <div class="educationrows">
+                          <div class="col-md-3">
+                              <input type="text" class="form-control m-input" name="course" placeholder="Enter Course">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control m-input" name="academicyear" placeholder="Enter Academic Year">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control m-input" name="percentage" placeholder="Enter Percentage">
+                          </div>
+                          <div class="col-md-3">
+                              <div class="input-group-prepend">
+                                  <button class="btn btn-danger remove-edu" type="button"><i class="bi bi-trash"></i>Delete</button>
+                              </div>
+                          </div>
+                          <br><br>
+                  </div>
+              {% endfor %}
+          </div>
+          <br>
+
+          <div class="col-md-3">
+              <button type="button" class="btn btn-dark addedu" style="background-color: #000;color: #fff;">
+                   </span> ADD Rows</button>
+          </div>
+
+           <br>
+
+
+          <h3>Experience</h3>
+          <div class="container">
+              <div id="experienceappend">
+                  {% for exp in experience %}
+                  <div class="experiencerows">
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input" value="{{ exp.companyname }}" name="company" placeholder="Enter Company name">
+                  </div>
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input" value="{{ exp.location }}" name="location" placeholder="Enter Location">
+                  </div>
+                  <div class="col-md-2">
+                      <input type="text" class="form-control m-input" value="{{ exp.joinedyear }}" name="startyear" placeholder="Enter Joined Year">
+                  </div>
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input" value="{{ exp.resignedyear }}" name="endyear" placeholder="Enter Resigned year">
+                  </div>
+                    <div class="col-md-2">
+                      <div class="input-group-prepend">
+                          <button class="btn btn-danger remove-exp" type="button"><i class="bi bi-trash"></i>Delete</button>
+                      </div>
+                  </div>
+                      <br><br>
+                </div>
+                  {% empty %}
+                   <div class="experiencerows">
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input"  name="company" placeholder="Enter Company name">
+                  </div>
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input"  name="location" placeholder="Enter Location">
+                  </div>
+                  <div class="col-md-2">
+                      <input type="text" class="form-control m-input"  name="startyear" placeholder="Enter Joined Year">
+                  </div>
+                    <div class="col-md-2">
+                      <input type="text" class="form-control m-input" name="endyear" placeholder="Enter Resigned year">
+                  </div>
+                    <div class="col-md-2">
+                      <div class="input-group-prepend">
+                          <button class="btn btn-danger remove-exp" type="button"><i class="bi bi-trash"></i>Delete</button>
+                      </div>
+                  </div>
+                </div>
+                  {% endfor %}
+              </div>
+
+          </div>
+
+           <br>
+
+          <div class="col-md-3">
+              <button type="button" class="btn btn-dark addexp" style="background-color: #000;color: #fff;">
+                   </span> ADD Rows</button>
+          </div>
+
+           <br>
+
+
+
+
+          <h3>Certification</h3>
+          <div class="container">
+            <div id="certificationappend">
+                {% for cert in certificate %}
+                <div class="certificationrows">
+                   <div class="col-md-3">
+                    <input type="text" class="form-control m-input" value="{{ cert.certificate }}" name="cerificatename" placeholder="Enter Certificate Name">
+                   </div>
+                  <div class="col-md-3">
+                        <input type="text" class="form-control m-input" value="{{ cert.institute }}" name="institutename" placeholder="Enter Institution">
+                   </div>
+                  <div class="col-md-3">
+                        <input type="text" class="form-control m-input" value="{{ cert.instituteyear }}" name="completedyear" placeholder="Enter Year">
+                  </div>
+                  <div class="col-md-3">
+                      <div class="input-group-prepend">
+                          <button class="btn btn-danger remove-cert" type="button"><i class="bi bi-trash"></i>Delete</button>
+                      </div>
+                    </div>
+                    <br><br>
+                </div>
+                {% empty %}
+                <div class="certificationrows">
+                   <div class="col-md-3">
+                    <input type="text" class="form-control m-input" name="cerificatename" placeholder="Enter Certificate Name">
+                   </div>
+                  <div class="col-md-3">
+                        <input type="text" class="form-control m-input" name="institutename" placeholder="Enter Institution">
+                   </div>
+                  <div class="col-md-3">
+                        <input type="text" class="form-control m-input" name="completedyear" placeholder="Enter Year">
+                  </div>
+                  <div class="col-md-3">
+                      <div class="input-group-prepend">
+                          <button class="btn btn-danger remove-cert" type="button"><i class="bi bi-trash"></i>Delete</button>
+                      </div>
+                    </div>
+                    <br><br>
+                </div>
+
+
+                {% endfor %}
+            </div>
+       </div>
+       <br>
+
+          <div class="col-md-3">
+              <button type="button" class="btn btn-dark addcertification" style="background-color: #000;color: #fff;">
+                   </span> ADD Rows</button>
+          </div>
+      </div>
+      <br>
+
+
+
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+      <br>  <br>
+  </form>
+</div>
+
+{% endblock %}

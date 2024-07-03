@@ -1,0 +1,51 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+  <h3>Inverted Navbar</h3>
+  <p>An inverted navbar is black instead of gray.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for list in profile %}
+      <div class="col-sm-4">
+        <div class="card">
+          <img src="{{list.profilepic.url}}" alt="..." height="150">
+          <h5 class="card-title">{{list.firstname}}  {{list.lastname}}</h5>
+            <p>Email:{{list.email}}</p>
+            <p>Phone:{{list.phoneno}}</p>
+          <a href="profiledetails/{{ list.id }}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+        {% endfor %}
+<!--      <div class="col-sm-4">-->
+<!--        <div class="card">-->
+<!--          <img src="https://via.placeholder.com/150" alt="...">-->
+<!--          <h5 class="card-title">Card title 2</h5>-->
+<!--          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--          <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-sm-4">-->
+<!--        <div class="card">-->
+<!--          <img src="https://via.placeholder.com/150" alt="...">-->
+<!--          <h5 class="card-title">Card title 3</h5>-->
+<!--          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--          <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+{% endblock %}

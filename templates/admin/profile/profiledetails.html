@@ -1,0 +1,119 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+
+
+<div class="container">
+    <div class="form-group">
+        <label for="firstname">Full Name:</label>
+        <p>{{ profile.firstname }}  {{ profile.lastname }}</p>
+    </div>
+
+    <div class="form-group">
+        <label for="firstname">Email::</label>
+        <p>{{ profile.email }}</p>
+
+    </div>
+
+    <div class="form-group">
+         <label for="firstname">Profile Pic:::</label>
+         <br>
+         <img src="{{ profile.profilepic.url }}" style="height:150px;">
+    </div>
+
+     <div class="form-group">
+        <label for="firstname">Phone No::</label>
+        <p>{{ profile.phoneno }}</p>
+    </div>
+
+     <div class="form-group">
+        <label for="firstname">Address::</label>
+        <p>{{ profile.address }}</p>
+    </div>
+
+    <div class="container">
+        <h3>Skills</h3>
+        <div id="skillsappend">
+            {% for skill in skills %}
+            <span class="badge badge-pill badge-primary">{{ skill.skillname }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="container">
+         <h3>Education</h3>
+        {% for edu in education %}
+         <div class="educationlist">
+             <div class="col-md-3">
+                <p>course:{{edu.course}}</p>
+             </div>
+             <div class="col-md-3">
+                <p>Completed Year:{{edu.year}}</p>
+             </div>
+             <div class="col-md-3">
+                <p>Percentage:{{edu.percentage}}</p>
+             </div>
+              <br><br>
+         </div>
+        <br><br>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="container">
+         <h3>Experience</h3>
+
+            {% for exp in experience %}
+                 <div class="experiencelist">
+                     <div class="col-md-3">
+                        <p>company:{{exp.companyname}}</p>
+                     </div>
+                 <div class="col-md-3">
+                    <p>Location Year:{{exp.location}}</p>
+                 </div>
+                 <div class="col-md-3">
+                    <p>Jouned Year:{{exp.joinedyear}}</p>
+                 </div>
+                     <div class="col-md-3">
+                    <p>Resigned Year:{{exp.resignedyear}}</p>
+                 </div>
+                  <br><br>
+                 </div>
+            {% endfor %}
+
+
+
+    </div>
+
+
+
+
+    <div class="container">
+        <h3>Certification</h3>
+        {% for cert in certification %}
+        <div class="certificationlist">
+             <div class="col-md-3">
+                <p>Certificate name:{{cert.certificate}}</p>
+             </div>
+            <div class="col-md-3">
+                <p>Institution:{{cert.institute}}</p>
+             </div>
+            <div class="col-md-3">
+                <p>Institution year :{{cert.instituteyear}}</p>
+            </div>
+            <br><br>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

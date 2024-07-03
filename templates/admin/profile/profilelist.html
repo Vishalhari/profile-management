@@ -1,0 +1,53 @@
+{% extends 'users/userlayout.html' %}
+{% load static %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+{% bootstrap_messages %}
+
+
+
+<div class="table-responsive">
+    <h3>Profile</h3>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+        <th scope="col">Profile</th>
+      <th scope="col">email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for list in profile %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}. {{ item }}</th>
+      <td>{{list.firstname}}  {{list.lastname}}</td>
+      <td>
+          <img src="{{ list.profilepic.url }}" style="height: 150px;">
+      </td>
+      <td>{{list.email}}</td>
+        <td>
+            <a href="profiledetails/{{ list.id }}">
+                <button type="button" class="btn btn-primary">Details</button>
+            </a>
+            <a href="deleteprofile/{{ list.id }}">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+    </tr>
+
+
+    {% endfor %}
+
+
+  </tbody>
+</table>
+</div>
+
+
+
+{% endblock %}
