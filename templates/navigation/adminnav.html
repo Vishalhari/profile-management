@@ -4,11 +4,10 @@
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
       <li><a href="{% url 'adminpanel' %}">Dashboard</a></li>
         <li><a href="{% url 'profilelist' %}">Profile</a></li>
-
-<!--      <li><a href="{% url 'userlogin' %}">Login</a></li>-->
-<!--      <li><a href="#">Page 3</a></li>-->
+        <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
   </div>
 </nav>
